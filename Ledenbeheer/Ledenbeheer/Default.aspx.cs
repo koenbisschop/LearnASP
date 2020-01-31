@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LedenbeheerDomain.Business;
 
 namespace Ledenbeheer
 {
@@ -18,17 +19,16 @@ namespace Ledenbeheer
         {
             string naam = txtNaam.Text;
             decimal bijdrage = Convert.ToDecimal(txtBijdrage.Text);
-            List<Lid> ledenLijst;
             if (naam != "")
             {
-                if (Session["Bijdragen"] == null)
-                    ledenLijst = new List<Lid>();
-                else
-                    ledenLijst = (List<Lid>)Session["Bijdragen"];
-                ledenLijst.Add(new Lid(naam, bijdrage));
-                Session["Bijdragen"] = ledenLijst;
-            }
 
+                Controller c;
+                if (Session["controller"] == null)
+                    c = new Controller();
+                else
+                    c = (Controller)Session["controller"];
+                c.NieuweBijdrage(naam, bijdrage);
+            }
             Response.Redirect("Resultaat.aspx");
         }
     }

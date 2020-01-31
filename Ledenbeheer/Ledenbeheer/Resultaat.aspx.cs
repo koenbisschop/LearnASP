@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LedenbeheerDomain.Business;
 
 namespace Ledenbeheer
 {
@@ -11,14 +12,10 @@ namespace Ledenbeheer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Lid> ledenLijst;
-            if (Session["Bijdragen"] == null)
-                ledenLijst = new List<Lid>();
-            else
-                ledenLijst = (List<Lid>)Session["Bijdragen"];
-            grvBijdragen.DataSource = ledenLijst;
+            Controller c = new Controller();
+            grvBijdragen.DataSource = c.GetLeden();
             grvBijdragen.DataBind();
-            lblTotaal.Text = BerekenTotaal(ledenLijst).ToString();
+            lblTotaal.Text = BerekenTotaal(c.GetLeden()).ToString();
         }
         public decimal BerekenTotaal(List<Lid> leden)
         {

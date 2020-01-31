@@ -80,7 +80,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Lid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resultaat.aspx.cs">
       <DependentUpon>Resultaat.aspx</DependentUpon>
@@ -98,6 +97,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LedenbeheerDomain\LedenbeheerDomain.csproj">
+      <Project>{17c66686-d0bc-4e17-925c-1ae980dde4da}</Project>
+      <Name>LedenbeheerDomain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

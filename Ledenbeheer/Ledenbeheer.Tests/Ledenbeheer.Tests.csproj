@@ -60,12 +60,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ledenbeheer\Ledenbeheer.csproj">
-      <Project>{B519D5C7-70B2-458F-B92B-2D59AF0CACC0}</Project>
-      <Name>Ledenbeheer</Name>
+    <ProjectReference Include="..\LedenbeheerDomain\LedenbeheerDomain.csproj">
+      <Project>{17c66686-d0bc-4e17-925c-1ae980dde4da}</Project>
+      <Name>LedenbeheerDomain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
