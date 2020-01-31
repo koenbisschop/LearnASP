@@ -30,7 +30,7 @@ CREATE TABLE `tblbijdragen` (
   `bedrag` decimal(14,0) NOT NULL,
   PRIMARY KEY (`lidid`,`datum`),
   KEY `fk_tblbijdragen_tbllid_idx` (`lidid`),
-  CONSTRAINT `fk_tblbijdragen_tbllid` FOREIGN KEY (`lidid`) REFERENCES `tbllid` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_tblbijdragen_tbllid` FOREIGN KEY (`lidid`) REFERENCES `tbllid` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
