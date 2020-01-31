@@ -18,15 +18,16 @@ namespace Ledenbeheer
         {
             string naam = txtNaam.Text;
             decimal bijdrage = Convert.ToDecimal(txtBijdrage.Text);
-            decimal totaal = 0.0M;
-
-            if (Session["totaal"] != null)
-                totaal = (decimal)Session["totaal"];
-
-            totaal += bijdrage;
-
-            Session["totaal"] = totaal;
-            Session["lid"] = new Lid(naam, bijdrage);
+            List<Lid> ledenLijst;
+            if (naam != "")
+            {
+                if (Session["Bijdragen"] == null)
+                    ledenLijst = new List<Lid>();
+                else
+                    ledenLijst = (List<Lid>)Session["Bijdragen"];
+                ledenLijst.Add(new Lid(naam, bijdrage));
+                Session["Bijdragen"] = ledenLijst;
+            }
 
             Response.Redirect("Resultaat.aspx");
         }

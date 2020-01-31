@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="lblLid" runat="server" Text="Label">Laatste bijdrage:</asp:Label><br />
+            <asp:GridView ID="grvBijdragen" runat="server" EnableViewState="False"></asp:GridView><br />
             <asp:Label ID="lblTotaal" runat="server" Text="Label">Totaal bijdragen: 0€</asp:Label><br /><br />
             <asp:Button ID="btnTerug" runat="server" Text="Terug" OnClick="btnTerug_Click" />
         </div>

@@ -11,11 +11,25 @@ namespace Ledenbeheer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            decimal totaal = (decimal)Session["totaal"];
-            Lid lid = (Lid) Session["lid"];
-            lblLid.Text = lid.ToString();
-            lblTotaal.Text = totaal.ToString("0.0")+"€";
+            List<Lid> ledenLijst;
+            if (Session["Bijdragen"] == null)
+                ledenLijst = new List<Lid>();
+            else
+                ledenLijst = (List<Lid>)Session["Bijdragen"];
+            grvBijdragen.DataSource = ledenLijst;
+            grvBijdragen.DataBind();
+            lblTotaal.Text = BerekenTotaal(ledenLijst).ToString();
         }
+        public decimal BerekenTotaal(List<Lid> leden)
+        {
+            decimal totaal = 0.0M;
+            foreach (Lid lid in leden)
+            {
+                totaal += lid.Bijdrage;
+            }
+            return totaal;
+        }
+
         protected void btnTerug_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
