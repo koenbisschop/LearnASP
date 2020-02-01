@@ -12,7 +12,7 @@ namespace Ledenbeheer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Controller c = new Controller();
+            Controller c = (Controller) Session["controller"];
             grvBijdragen.DataSource = c.GetLeden();
             grvBijdragen.DataBind();
             lblTotaal.Text = BerekenTotaal(c.GetLeden()).ToString();

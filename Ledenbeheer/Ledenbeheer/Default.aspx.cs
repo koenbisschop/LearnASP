@@ -17,16 +17,11 @@ namespace Ledenbeheer
 
         protected void btnResultaat_Click(object sender, EventArgs e)
         {
+            Controller c = (Controller)Session["controller"];
             string naam = txtNaam.Text;
             decimal bijdrage = Convert.ToDecimal(txtBijdrage.Text);
             if (naam != "")
             {
-
-                Controller c;
-                if (Session["controller"] == null)
-                    c = new Controller();
-                else
-                    c = (Controller)Session["controller"];
                 c.NieuweBijdrage(naam, bijdrage);
             }
             Response.Redirect("Resultaat.aspx");
