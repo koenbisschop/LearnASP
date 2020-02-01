@@ -8,11 +8,11 @@ using LedenbeheerDomain.Business;
 
 namespace Ledenbeheer
 {
-    public partial class Resultaat1 : System.Web.UI.Page
+    public partial class Resultaat : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Controller c = (Controller)Session["controller"];
+            Controller c = (Controller) Session["controller"];
             grvBijdragen.DataSource = c.GetLeden();
             grvBijdragen.DataBind();
             lblTotaal.Text = BerekenTotaal(c.GetLeden()).ToString();

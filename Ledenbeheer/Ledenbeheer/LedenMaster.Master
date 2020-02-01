@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LedenMaster.master.cs" Inherits="Ledenbeheer.LedenMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Beheer ledenbijdragen</title>
+    <link href="css/stijlen.css" type="text/css" rel="stylesheet" />
+    <meta name="author" content="yourname" />
+    <meta name="keywords" content="Bijdragen,Leden" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <h1>Ledenbeheer</h1>
+        </header>
+        <main>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <p>Deze pagina is onder constructie...</p>
+            </asp:ContentPlaceHolder>
+        </main>
+    </form>
+</body>
+</html>
