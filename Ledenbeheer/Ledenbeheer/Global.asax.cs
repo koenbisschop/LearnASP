@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 using LedenbeheerDomain.Business;
 
 namespace Ledenbeheer
@@ -13,7 +14,27 @@ namespace Ledenbeheer
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
+            ScriptManager.ScriptResourceMapping.AddDefinition(
+                "jquery",
+                new ScriptResourceDefinition
+                {
+                    Path = "~/Scripts/jquery-3.0.0.slim.js"
+                }
+                );
+            ScriptManager.ScriptResourceMapping.AddDefinition(
+                "popper",
+                new ScriptResourceDefinition
+                {
+                    Path = "~/Scripts/popper.min.js"
+                }
+                );
+            ScriptManager.ScriptResourceMapping.AddDefinition(
+                "bootstrap",
+                new ScriptResourceDefinition
+                {
+                    Path = "~/Scripts/bootstrap.min.js"
+                }
+                );
         }
 
         protected void Session_Start(object sender, EventArgs e)

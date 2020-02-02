@@ -75,10 +75,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Default-oud.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Resultaat-oud.aspx" />
     <Content Include="css\stijlen.css" />
     <Content Include="Resultaat.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -183,13 +181,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default-oud.aspx.cs">
-      <DependentUpon>Default-oud.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default-oud.aspx.designer.cs">
-      <DependentUpon>Default-oud.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,13 +199,6 @@
       <DependentUpon>LedenMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resultaat-oud.aspx.cs">
-      <DependentUpon>Resultaat-oud.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Resultaat-oud.aspx.designer.cs">
-      <DependentUpon>Resultaat-oud.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Resultaat.aspx.cs">
       <DependentUpon>Resultaat.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
