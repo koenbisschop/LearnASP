@@ -18,8 +18,8 @@ namespace Ledenbeheer
         protected void btnResultaat_Click(object sender, EventArgs e)
         {
             Controller c = (Controller)Session["controller"];
-            string naam = txtNaam.Text;
-            decimal bijdrage = Convert.ToDecimal(txtBijdrage.Text);
+            string naam = txtNaam.Value;
+            decimal bijdrage = Convert.ToDecimal(txtBijdrage.Value);
             if (naam != "")
             {
                 c.NieuweBijdrage(naam, bijdrage);

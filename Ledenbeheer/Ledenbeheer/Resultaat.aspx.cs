@@ -15,7 +15,7 @@ namespace Ledenbeheer
             Controller c = (Controller)Session["controller"];
             grvBijdragen.DataSource = c.GetLeden();
             grvBijdragen.DataBind();
-            lblTotaal.Text = BerekenTotaal(c.GetLeden()).ToString();
+            lblTotaal.Text = "Totaal bijdragen: " + BerekenTotaal(c.GetLeden()).ToString("c2");
         }
         public decimal BerekenTotaal(List<Lid> leden)
         {
