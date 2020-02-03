@@ -3,13 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container table-responsive" style="width:80%;margin-left: auto;margin-right: auto;">
+    <div class="container table-responsive" style="width: 80%; margin-left: auto; margin-right: auto;">
         <asp:DropDownList ID="ddlLeden" runat="server" OnSelectedIndexChanged="ddlLeden_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
         <br />
         <br />
-        <asp:GridView ID="grvBijdragenLid" CssClass="col-sm-12" Style="width:20%;" runat="server" EnableViewState="False" AutoGenerateColumns="False">
+        <asp:GridView ID="grvBijdragenLid" CssClass="col-sm-12" Style="width: 30%;" runat="server" EnableViewState="False" AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="Datum" HeaderText="Datum" DataFormatString="{0:ddd d-M-yy}" >
+                <asp:BoundField DataField="Datum" HeaderText="Datum" DataFormatString="{0:ddd d-M-yy}">
                     <ItemStyle Width="50%" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Bedrag" DataFormatString="{0:c2}" HeaderText="Bedrag">
