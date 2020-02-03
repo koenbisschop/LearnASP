@@ -4,19 +4,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="table table-borderless table-hover table-responsive table-striped">
-        <asp:GridView ID="grvBijdragen" DataKeyNames="Id" CssClass="col-sm-12" Style="margin: auto; width: 50%;" runat="server" EnableViewState="False" AutoGenerateColumns="False" OnSelectedIndexChanged="grvBijdragen_SelectedIndexChanged">
+        <asp:GridView ID="grvBijdragen" DataKeyNames="Id" CssClass="col-sm-12" Style="margin: auto;width:70%;" runat="server" EnableViewState="False" AutoGenerateColumns="False" OnSelectedIndexChanged="grvBijdragen_SelectedIndexChanged" OnRowDeleting="grvBijdragen_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="Id" DataFormatString="{0:}" HeaderText="Id" ReadOnly="True" Visible="False" />
                 <asp:BoundField DataField="Naam" HeaderText="Naam">
                     <ItemStyle Width="40%" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Bijdrage" DataFormatString="{0:c2}" HeaderText="Bijdrage">
-                    <ItemStyle Width="20%" HorizontalAlign="Right" Wrap="False" />
+                    <ItemStyle Width="10%" HorizontalAlign="Right" Wrap="False" />
                 </asp:BoundField>
                 <asp:CommandField ShowSelectButton="True">
                     <ControlStyle CssClass="btn btn-secondary" />
                     <ItemStyle Width="10%" HorizontalAlign="Center" />
                 </asp:CommandField>
+                <asp:CommandField ButtonType="Button" ShowDeleteButton="True">
+                    <ControlStyle CssClass="btn btn-danger" />
+                    <ItemStyle Width="10%" HorizontalAlign="Center" />
+                </asp:CommandField>
+
             </Columns>
         </asp:GridView>
         <br />

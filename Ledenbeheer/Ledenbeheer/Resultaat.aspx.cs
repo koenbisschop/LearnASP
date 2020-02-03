@@ -10,10 +10,13 @@ namespace Ledenbeheer
 {
     public partial class Resultaat1 : System.Web.UI.Page
     {
+        Controller c;
+        List<Lid> ledenLijst;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Controller c = (Controller)Session["controller"];
-            grvBijdragen.DataSource = c.GetLeden();
+            c = (Controller)Session["controller"];
+            ledenLijst = c.GetLeden();
+            grvBijdragen.DataSource = ledenLijst;
             grvBijdragen.DataBind();
             lblTotaal.Text = "Totaal bijdragen: " + BerekenTotaal(c.GetLeden()).ToString("c2");
         }
@@ -37,6 +40,19 @@ namespace Ledenbeheer
             Int32 lidNr = (Int32) grvBijdragen.SelectedValue;
             Session["lidnr"] = lidNr;
             Response.Redirect("DropDown.aspx");
+        }
+
+        protected void grvBijdragen_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Int32 rijNr = e.RowIndex;
+            GridViewRow row = grvBijdragen.Rows[rijNr];
+            Int32 ledenLijstIndex = row.DataItemIndex;
+            Int32 lidNr = ledenLijst[ledenLijstIndex].Id;
+            //ofwel: Int32 lidNr = (Int32) grvBijdragen.DataKeys[ledenLijstIndex].Value;
+            c.RemoveLid(lidNr);
+            grvBijdragen.DataBind();
+            //totaal inkomsten is gewijzigd!
+            lblTotaal.Text = "Totaal bijdragen: " + BerekenTotaal(c.GetLeden()).ToString("c2");
         }
     }
 }
