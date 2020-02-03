@@ -23,7 +23,7 @@ namespace Ledenbeheer
                 ddlLeden.DataValueField = "Id";
                 ddlLeden.DataBind();
             }
-            ToonInfo();
+            ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
         }
 
         protected void ToonInfo(Int32 id=0)
