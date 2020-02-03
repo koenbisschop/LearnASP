@@ -49,7 +49,7 @@ namespace LedenbeheerDomain.Business
             Bijdrage bijdrage = null;
             bijdrage = Bijdragen.Find(b => b.Datum == datum);
             if (bijdrage != null)
-                bijdrage.Bedrag = bedrag;
+                bijdrage.Bedrag += bedrag;
             return bijdrage;
         }
         public override string ToString()

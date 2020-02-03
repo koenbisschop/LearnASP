@@ -23,6 +23,17 @@ namespace Ledenbeheer
                 ddlLeden.DataValueField = "Id";
                 ddlLeden.DataBind();
             }
+            if (Session["lidnr"] != null)
+            {
+                //haal het geselecteerde lidnr op in de session-ruimte
+                Int32 lidNr = (Int32) Session["lidnr"];
+                //deze sessievariabele verwijderen!
+                Session["lidnr"] = null;
+                //haal het lid-item op in de dropdownlist
+                ListItem item = ddlLeden.Items.FindByValue(lidNr.ToString());
+                //stel de index van de dropdownlist in op dit item 
+                ddlLeden.SelectedIndex = ddlLeden.Items.IndexOf(item);
+            }
             ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
         }
 

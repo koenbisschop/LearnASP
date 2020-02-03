@@ -31,5 +31,12 @@ namespace Ledenbeheer
         {
             Response.Redirect("Default.aspx");
         }
+
+        protected void grvBijdragen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Int32 lidNr = (Int32) grvBijdragen.SelectedValue;
+            Session["lidnr"] = lidNr;
+            Response.Redirect("DropDown.aspx");
+        }
     }
 }
