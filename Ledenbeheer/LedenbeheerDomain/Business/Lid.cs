@@ -8,7 +8,7 @@ namespace LedenbeheerDomain.Business
 {
     public class Lid: Entity
     {
-        public string Naam { get; private set; }
+        public string Naam { get; internal set; }
         public List<Bijdrage> Bijdragen { get; private set; }
         public Lid(Int32 id, string naam): base(id)
         {

@@ -54,5 +54,31 @@ namespace Ledenbeheer
             //totaal inkomsten is gewijzigd!
             lblTotaal.Text = "Totaal bijdragen: " + BerekenTotaal(c.GetLeden()).ToString("c2");
         }
+
+        protected void grvBijdragen_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            grvBijdragen.EditIndex = e.NewEditIndex;
+            grvBijdragen.DataBind();
+        }
+
+        protected void grvBijdragen_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = grvBijdragen.Rows[e.RowIndex];
+            //welk lid werd aangepast?
+            Lid lid = ledenLijst[row.DataItemIndex];
+            //wat is de nieuwe naam?
+            string nieuweNaam = ((TextBox)row.Cells[1].Controls[0]).Text; //0=Id; 1=Naam
+            c.ChangeLid(lid.Id, nieuweNaam);
+            //reset the edit index
+            grvBijdragen.EditIndex = -1;
+            grvBijdragen.DataBind();
+        }
+
+        protected void grvBijdragen_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            //reset the edit index
+            grvBijdragen.EditIndex = -1;
+            grvBijdragen.DataBind();
+        }
     }
 }

@@ -42,6 +42,7 @@ namespace LedenbeheerDomain.Business
         public void ChangeLid(Int32 id, string nieuweNaam)
         {
             Lid lid = LidRepository.GetItem(id);
+            lid.Naam = nieuweNaam;
             LidRepository.ChangeItem(lid);
         }
         public void NieuweBijdrage(string naam, decimal bedrag)
