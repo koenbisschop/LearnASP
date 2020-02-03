@@ -76,6 +76,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Dropdown.aspx" />
     <Content Include="Global.asax" />
     <Content Include="css\stijlen.css" />
     <Content Include="Resultaat.aspx" />
@@ -187,6 +188,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dropdown.aspx.cs">
+      <DependentUpon>Dropdown.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dropdown.aspx.designer.cs">
+      <DependentUpon>Dropdown.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
