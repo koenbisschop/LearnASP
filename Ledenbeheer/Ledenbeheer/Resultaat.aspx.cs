@@ -31,5 +31,10 @@ namespace Ledenbeheer
         {
             Response.Redirect("Default.aspx");
         }
+        
+        protected void grvBijdragen_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvBijdragen.PageIndex = e.NewPageIndex;
+        }
     }
 }
