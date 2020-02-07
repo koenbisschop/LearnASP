@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,7 +17,8 @@ namespace Ledenbeheer
 
         protected void LoginStatus1_LoggingOut(object sender, LoginCancelEventArgs e)
         {
-
+            FormsAuthentication.SignOut();
+            Response.Redirect("~/Account/Login.aspx");
         }
     }
 }

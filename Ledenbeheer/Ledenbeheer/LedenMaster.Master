@@ -30,32 +30,47 @@
                 </div>
             </div>
         </header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded" style="margin: 10px 10% 10px 10%;">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maak je keuze</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" runat="server" href="~/Users/Resultaat.aspx">Overzicht</a>
-                        <a class="dropdown-item" runat="server" href="~/Users/Nieuw.aspx">Nieuwe bijdrage</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" runat="server" href="~/Users/Nieuw.aspx">Nieuwe bijdrage</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" runat="server" href="~/Users/Resultaat.aspx">Overzicht</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Welkom,...</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-            </ul>
-        </nav>
+        <asp:LoginView ID="LoginView1" runat="server">
+            <AnonymousTemplate>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded" style="margin: 10px 10% 10px 10%;">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" runat="server" href="~/Account/Registreren.aspx">Registreren</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/Account/Login.aspx">Aanmelden</a>
+                        </li>
+                    </ul>
+                </nav>
+            </AnonymousTemplate>
+            <LoggedInTemplate>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded" style="margin: 10px 10% 10px 10%;">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maak je keuze</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" runat="server" href="~/Users/Resultaat.aspx">Overzicht</a>
+                                <a class="dropdown-item" href="~/Users/Nieuw.aspx">Nieuwe bijdrage</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">Left Link 2</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="#">Welkom,
+                                <asp:LoginName ID="LoginName1" runat="server" />
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <asp:LoginStatus class="nav-link" ID="LoginStatus1" runat="server" OnLoggingOut="LoginStatus1_LoggingOut" />
+                        </li>
+                    </ul>
+                </nav>
+            </LoggedInTemplate>
+        </asp:LoginView>
         <main>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 <p>Deze pagina is onder constructie...</p>
