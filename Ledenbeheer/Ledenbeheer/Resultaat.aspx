@@ -11,7 +11,10 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="grvBijdragen" runat="server" EnableViewState="False"></asp:GridView><br />
+           <asp:GridView ID="grvBijdragen" runat="server" EnableViewState="False" EnablePaging="True" PageSize="5" AllowPaging="True" OnPageIndexChanging="grvBijdragen_PageIndexChanging">
+                <PagerSettings Mode="NextPreviousFirstLast" />
+                <PagerStyle BackColor="#FFFFCC" />
+            </asp:GridView><br />
             <asp:Label ID="lblTotaal" runat="server" Text="Label">Totaal bijdragen: 0€</asp:Label><br /><br />
             <asp:Button ID="btnTerug" runat="server" Text="Terug" OnClick="btnTerug_Click" />
         </div>
