@@ -76,10 +76,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Dropdown.aspx" />
+    <Content Include="Users\Nieuw.aspx" />
+    <Content Include="Users\Dropdown.aspx" />
     <Content Include="Global.asax" />
     <Content Include="css\stijlen.css" />
-    <Content Include="Resultaat.aspx" />
+    <Content Include="Users\Resultaat.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -189,11 +190,18 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dropdown.aspx.cs">
+    <Compile Include="Users\Nieuw.aspx.cs">
+      <DependentUpon>Nieuw.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Nieuw.aspx.designer.cs">
+      <DependentUpon>Nieuw.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Dropdown.aspx.cs">
       <DependentUpon>Dropdown.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Dropdown.aspx.designer.cs">
+    <Compile Include="Users\Dropdown.aspx.designer.cs">
       <DependentUpon>Dropdown.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -207,11 +215,11 @@
       <DependentUpon>LedenMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resultaat.aspx.cs">
+    <Compile Include="Users\Resultaat.aspx.cs">
       <DependentUpon>Resultaat.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Resultaat.aspx.designer.cs">
+    <Compile Include="Users\Resultaat.aspx.designer.cs">
       <DependentUpon>Resultaat.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

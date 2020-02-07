@@ -10,21 +10,5 @@ namespace Ledenbeheer
 {
     public partial class Default1 : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnResultaat_Click(object sender, EventArgs e)
-        {
-            Controller c = (Controller)Session["controller"];
-            string naam = txtNaam.Value;
-            decimal bijdrage = Convert.ToDecimal(txtBijdrage.Value);
-            if (naam != "")
-            {
-                c.NieuweBijdrage(naam, bijdrage);
-            }
-            Response.Redirect("Resultaat.aspx");
-        }
     }
 }

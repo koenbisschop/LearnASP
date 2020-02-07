@@ -3,15 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-sm-10" style="width:80%; margin:10px auto 10px auto">
-        <div class="form-group">
-            <label for="txtNaam">Naam</label>
-            <input type="text" required="required" runat="server" class="form-control" id="txtNaam" placeholder="jouw naam">
-        </div>
-        <div class="form-group">
-            <label for="txtBijdrage">Bijdrage</label>
-            <input type="number" runat="server" required="required" class="form-control" id="txtBijdrage">
-        </div>
-        <asp:Button Id="btnResultaat" runat="server" CssClass="btn btn-primary" OnClick="btnResultaat_Click" Text="Resultaat" />
+    <div class="text-center">
+        <p>Verplaats Default.aspx naar de map Users samen met Resultaat.aspx.</p>
+        <p>Hernoem Default.aspx naar Nieuw.aspx.</p>
+        <p>Maak in de root van je web een nieuwe Default.aspx pagina met deze inhoud.</p>
+        <p>Aanmelden en registreren komen aan bod in een volgende stap.</p>
+        <p>Voorlopig wordt enkel de menu voorzien!</p>
+        <p>Merk op: je kan via de adresbalk nog naar http://localhost:xxx/Users/Nieuw.aspx! (test dit)</p>
     </div>
 </asp:Content>
