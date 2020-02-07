@@ -34,7 +34,8 @@ namespace Ledenbeheer
         
         protected void grvBijdragen_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvBijdragen.PageIndex = e.NewPageIndex;
+            if (e.NewPageIndex >= 0 && e.NewPageIndex < grvBijdragen.PageCount)
+                grvBijdragen.PageIndex = e.NewPageIndex;
         }
     }
 }
