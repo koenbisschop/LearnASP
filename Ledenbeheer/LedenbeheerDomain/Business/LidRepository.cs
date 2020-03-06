@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace LedenbeheerDomain.Business
 {
-    class ItemChangedEventArgs : EventArgs
-    {
-        public string NieuweNaam { get; private set; }
-        public ItemChangedEventArgs(string nieuweNaam)
-        {
-            NieuweNaam = nieuweNaam;
-        }
-    }
     static class LidRepository
     {
         private static List<Lid> _items = new List<Lid>();

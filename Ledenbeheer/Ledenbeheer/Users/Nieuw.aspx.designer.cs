@@ -33,6 +33,15 @@ namespace Ledenbeheer
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtBijdrage;
 
         /// <summary>
+        /// ddlProjecten control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProjecten;
+
+        /// <summary>
         /// btnResultaat control.
         /// </summary>
         /// <remarks>

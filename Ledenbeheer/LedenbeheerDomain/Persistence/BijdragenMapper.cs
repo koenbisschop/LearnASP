@@ -30,7 +30,8 @@ namespace LedenbeheerDomain.Persistence
             {
                 Bijdrage _bijdrage = new Bijdrage(
                     Convert.ToDateTime(dr["datum"]),
-                    Convert.ToDecimal(dr["bedrag"])
+                    Convert.ToDecimal(dr["bedrag"]),
+                    Convert.ToInt32(dr["projectid"])
                     );
                 _bijdragen.Add(_bijdrage);
             }
@@ -42,12 +43,13 @@ namespace LedenbeheerDomain.Persistence
         {
             MySqlConnection con = new MySqlConnection(_conString);
             MySqlCommand cmd = new MySqlCommand(
-                "INSERT INTO tblbijdragen (lidid, datum, bedrag)" +
-                " VALUES (@lidid, @datum, @bedrag)"
+                "INSERT INTO tblbijdragen (lidid, datum, bedrag, projectid)" +
+                " VALUES (@lidid, @datum, @bedrag, @projectid)"
                 , con);
             cmd.Parameters.AddWithValue("lidid", lidId);
             cmd.Parameters.AddWithValue("datum", bijdrage.Datum);
             cmd.Parameters.AddWithValue("bedrag", bijdrage.Bedrag);
+            cmd.Parameters.AddWithValue("projectid", bijdrage.ProjectId);
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
@@ -57,12 +59,13 @@ namespace LedenbeheerDomain.Persistence
         {
             MySqlConnection con = new MySqlConnection(_conString);
             MySqlCommand cmd = new MySqlCommand(
-                "UPDATE tblbijdragen SET bedrag = @bedrag " +
+                "UPDATE tblbijdragen SET bedrag = @bedrag, projectid=@projectid " +
                 " WHERE lidid=@lidid AND datum=@datum"
                 , con);
             cmd.Parameters.AddWithValue("lidid", lidId);
             cmd.Parameters.AddWithValue("datum", bijdrage.Datum);
             cmd.Parameters.AddWithValue("bedrag", bijdrage.Bedrag);
+            cmd.Parameters.AddWithValue("projectid", bijdrage.ProjectId);
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();

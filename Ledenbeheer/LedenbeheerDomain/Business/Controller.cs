@@ -14,12 +14,14 @@ namespace LedenbeheerDomain.Business
             if (!_isLoaded)
             {
                 LidRepository.Load(Persistence.Controller.GetLeden());
+                ProjectRepository.Load(Persistence.Controller.GetProjecten());
                 foreach (Lid lid in LidRepository.Items)
                 {
                     lid.Load(Persistence.Controller.GetBijdragen(lid));
                 }
             }
         }
+        #region Lid
         public List<Lid> GetLeden()
         {
             return LidRepository.Items;
@@ -45,7 +47,36 @@ namespace LedenbeheerDomain.Business
             lid.Naam = nieuweNaam;
             LidRepository.ChangeItem(lid);
         }
-        public void NieuweBijdrage(string naam, decimal bedrag)
+        #endregion Lid
+        #region Project
+        public List<Project> GetProjecten()
+        {
+            return ProjectRepository.Items;
+        }
+        public Project GetProject(Int32 id)
+        {
+            return ProjectRepository.GetItem(id);
+        }
+        public Project AddProject(string omschrijving)
+        {
+            Int32 id = ProjectRepository.GetNextId();
+            Project Project = new Project(id, omschrijving);
+            ProjectRepository.AddItem(Project);
+            return Project;
+        }
+        public void RemoveProject(Int32 id)
+        {
+            ProjectRepository.RemoveItem(id);
+        }
+        public void ChangeProject(Int32 id, string nieuweOmschrijving)
+        {
+            Project Project = ProjectRepository.GetItem(id);
+            Project.Omschrijving = nieuweOmschrijving;
+            ProjectRepository.ChangeItem(Project);
+        }
+        #endregion Project
+        #region bijdragen
+        public void NieuweBijdrage(string naam, decimal bedrag, int projectId)
         {
             Lid lid = LidRepository.Items.Find(l => l.Naam == naam);
             if (lid == null)
@@ -57,27 +88,29 @@ namespace LedenbeheerDomain.Business
             Bijdrage bijdrage;
             if (lid.ReedsBijdrageOp(DateTime.Today))
             {
-                bijdrage = lid.WijzigBijdrage(DateTime.Today, bedrag);
+                bijdrage = lid.WijzigBijdrage(DateTime.Today, bedrag, projectId);
                 Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
             }
             else
             {
-                bijdrage = lid.NieuweBijdrage(DateTime.Today, bedrag);
+                bijdrage = lid.NieuweBijdrage(DateTime.Today, bedrag, projectId);
                 Persistence.Controller.AddBijdrage(lid.Id, bijdrage);
             }
         }
-        public void NieuweBijdrage(Int32 lidId, DateTime datum, decimal bedrag)
+        public void NieuweBijdrage(Int32 lidId, DateTime datum, decimal bedrag, int projectId)
         {
             Lid lid = LidRepository.GetItem(lidId);
-            Bijdrage bijdrage = lid.NieuweBijdrage(datum, bedrag);
+            Bijdrage bijdrage = lid.NieuweBijdrage(datum, bedrag, projectId);
             Persistence.Controller.AddBijdrage(lid.Id, bijdrage);
         }
-        public void WijzigBijdrage(Int32 lidId, DateTime datum, decimal bedrag )
+        public void WijzigBijdrage(Int32 lidId, DateTime datum, decimal bedrag, int projectId )
         {
             Lid lid = LidRepository.GetItem(lidId);
             Bijdrage bijdrage = lid.Bijdragen.Find(b => b.Datum == datum);
             bijdrage.Bedrag = bedrag;
+            bijdrage.ProjectId = projectId;
             Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
         }
+        #endregion bijdragen
     }
 }

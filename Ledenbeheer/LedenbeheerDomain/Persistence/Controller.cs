@@ -24,7 +24,7 @@ namespace LedenbeheerDomain.Persistence
                 return _connectionstring;
             }
         }
-
+        #region Lid
         internal static List<Lid> GetLeden()
         {
             LidMapper mapper = new LidMapper(ConnectionString);
@@ -48,7 +48,8 @@ namespace LedenbeheerDomain.Persistence
             LidMapper mapper = new LidMapper(ConnectionString);
             mapper.ChangeLidInDB(lid);
         }
-
+        #endregion Lid
+        #region Bijdragen
         internal static List<Bijdrage> GetBijdragen(Lid lid)
         {
             BijdragenMapper mapper = new BijdragenMapper(ConnectionString);
@@ -66,5 +67,33 @@ namespace LedenbeheerDomain.Persistence
             BijdragenMapper mapper = new BijdragenMapper(ConnectionString);
             mapper.UpdateBijdrageInDB(lidId, bijdrage);
         }
+        #endregion Bijdragen
+        #region Projecten
+        internal static List<Project> GetProjecten()
+        {
+            ProjectMapper mapper = new ProjectMapper(ConnectionString);
+            return mapper.GetAllProjectenFromDB();
+        }
+
+        internal static void AddProject(Project Project)
+        {
+            ProjectMapper mapper = new ProjectMapper(ConnectionString);
+            mapper.AddProjectToDB(Project);
+        }
+
+        internal static void RemoveProject(Project Project)
+        {
+            ProjectMapper mapper = new ProjectMapper(ConnectionString);
+            mapper.RemoveProjectFromDB(Project);
+        }
+
+        internal static void ChangeProject(Project Project)
+        {
+            ProjectMapper mapper = new ProjectMapper(ConnectionString);
+            mapper.ChangeProjectInDB(Project);
+        }
+
+
+        #endregion Projecten
     }
 }

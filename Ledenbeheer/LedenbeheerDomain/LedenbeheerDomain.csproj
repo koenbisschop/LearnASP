@@ -58,16 +58,19 @@
     <Compile Include="Business\Entity.cs" />
     <Compile Include="Business\Lid.cs" />
     <Compile Include="Business\LidRepository.cs" />
+    <Compile Include="Business\Project.cs" />
+    <Compile Include="Business\ProjectRepository.cs" />
     <Compile Include="Persistence\BijdragenMapper.cs" />
     <Compile Include="Persistence\Controller.cs" />
     <Compile Include="Persistence\LidMapper.cs" />
+    <Compile Include="Persistence\ProjectMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Persistence\ledenbeheer.data.sql" />
+    <Content Include="Persistence\ledenbeheer 2.data..sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

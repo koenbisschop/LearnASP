@@ -25,7 +25,7 @@ namespace LedenbeheerDomain.Business
                 return totaal;
             }
         }
-        public Bijdrage NieuweBijdrage(DateTime datum, decimal bedrag)
+        public Bijdrage NieuweBijdrage(DateTime datum, decimal bedrag, int projectId)
         {
             Bijdrage bijdrage = null;
             bijdrage = Bijdragen.Find(b => b.Datum == datum);
@@ -33,7 +33,7 @@ namespace LedenbeheerDomain.Business
                 bijdrage.Bedrag += bedrag;
             else
             {
-                bijdrage = new Bijdrage(datum, bedrag);
+                bijdrage = new Bijdrage(datum, bedrag, projectId);
                 Bijdragen.Add(bijdrage);
             }
             return bijdrage;
@@ -44,17 +44,20 @@ namespace LedenbeheerDomain.Business
             return Bijdragen.Find(b => b.Datum == datum) != null;
         }
 
-        public Bijdrage WijzigBijdrage(DateTime datum, decimal bedrag)
+        public Bijdrage WijzigBijdrage(DateTime datum, decimal bedrag, int projectId)
         {
             Bijdrage bijdrage = null;
             bijdrage = Bijdragen.Find(b => b.Datum == datum);
             if (bijdrage != null)
+            {
                 bijdrage.Bedrag += bedrag;
+                bijdrage.ProjectId = projectId;
+            }
             return bijdrage;
         }
         public override string ToString()
         {
-            string omschrijving = Naam + " leverde een bijdrage van " + Bijdrage.ToString("0.0") + "€";
+            string omschrijving = Naam + " leverde een totale bijdrage van " + Bijdrage.ToString("0.0") + "€";
             return omschrijving;
         }
 

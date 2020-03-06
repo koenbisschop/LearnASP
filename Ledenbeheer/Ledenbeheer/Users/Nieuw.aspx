@@ -12,6 +12,10 @@
             <label for="txtBijdrage">Bijdrage</label>
             <input type="number" runat="server" required="required" class="form-control" id="txtBijdrage">
         </div>
+        <div class="form-group">
+            <label for="ddlProjecten">Project</label>
+            <asp:DropDownList ID="ddlProjecten" runat="server"></asp:DropDownList>
+        </div>
         <asp:Button Id="btnResultaat" runat="server" CssClass="btn btn-primary" OnClick="btnResultaat_Click" Text="Resultaat" />
     </div>
 </asp:Content>

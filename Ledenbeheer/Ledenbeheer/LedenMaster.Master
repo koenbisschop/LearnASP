@@ -51,7 +51,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maak je keuze</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" runat="server" href="~/Users/Resultaat.aspx">Overzicht</a>
-                                <a class="dropdown-item" href="~/Users/Nieuw.aspx">Nieuwe bijdrage</a>
+                                <a class="dropdown-item" runat="server" href="~/Users/Nieuw.aspx">Nieuwe bijdrage</a>
                             </div>
                         </li>
                         <li class="nav-item">

@@ -12,7 +12,14 @@ namespace Ledenbeheer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!this.IsPostBack)
+            {
+                Controller c = (Controller)Session["controller"];
+                ddlProjecten.DataSource = c.GetProjecten();
+                ddlProjecten.DataTextField = "Omschrijving";
+                ddlProjecten.DataValueField = "Id";
+                ddlProjecten.DataBind();
+            }
         }
 
         protected void btnResultaat_Click(object sender, EventArgs e)
@@ -20,11 +27,12 @@ namespace Ledenbeheer
             Controller c = (Controller)Session["controller"];
             string naam = txtNaam.Value;
             decimal bijdrage = Convert.ToDecimal(txtBijdrage.Value);
+            int projectid = Convert.ToInt32(ddlProjecten.SelectedValue);
             if (naam != "")
             {
-                c.NieuweBijdrage(naam, bijdrage);
+                c.NieuweBijdrage(naam, bijdrage, projectid);
             }
-            Response.Redirect("Resultaat.aspx");
+            Response.Redirect("~/Users/Resultaat.aspx");
         }
     }
 }
