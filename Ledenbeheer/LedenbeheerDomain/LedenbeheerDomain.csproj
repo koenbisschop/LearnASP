@@ -70,7 +70,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Persistence\ledenbeheer 2.data..sql" />
+    <Content Include="Persistence\Ledenbeheer.2.data.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

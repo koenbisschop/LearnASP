@@ -11,17 +11,16 @@ namespace Ledenbeheer
     public partial class Dropdown : System.Web.UI.Page
     {
         Controller c;
-        private List<Lid> LedenLijst { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             c = (Controller)Session["controller"];
-            LedenLijst = c.GetLeden();
             if (!IsPostBack)
             {
-                ddlLeden.DataSource = LedenLijst;
+                ddlLeden.DataSource = c.GetLeden();
                 ddlLeden.DataTextField = "Naam";
                 ddlLeden.DataValueField = "Id";
                 ddlLeden.DataBind();
+                ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
             }
             if (Session["lidnr"] != null)
             {
@@ -33,8 +32,8 @@ namespace Ledenbeheer
                 ListItem item = ddlLeden.Items.FindByValue(lidNr.ToString());
                 //stel de index van de dropdownlist in op dit item 
                 ddlLeden.SelectedIndex = ddlLeden.Items.IndexOf(item);
+                ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
             }
-            ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
         }
 
         protected void ToonInfo(Int32 id=0)
@@ -54,11 +53,38 @@ namespace Ledenbeheer
         }
         protected void btnTerug_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
 
         protected void ddlLeden_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
+        }
+
+        protected void grvBijdragenLid_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            grvBijdragenLid.EditIndex = e.NewEditIndex;
+            ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
+        }
+
+        protected void grvBijdragenLid_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            grvBijdragenLid.EditIndex = -1;
+            ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
+        }
+
+        protected void grvBijdragenLid_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            int lidId = Convert.ToInt32(ddlLeden.SelectedValue);
+            GridViewRow row = grvBijdragenLid.Rows[e.RowIndex];
+            DropDownList ddlProjecten = (DropDownList) row.FindControl("ddlProjecten");
+            int projectId = Convert.ToInt32(ddlProjecten.SelectedValue);
+            decimal bedrag = Convert.ToDecimal(((TextBox) row.Cells[1].Controls[0]).Text);
+            //ofwel:
+            //decimal bedrag = Convert.ToDecimal(e.NewValues["Bedrag"]);
+            DateTime datum = (DateTime)grvBijdragenLid.DataKeys[e.RowIndex][0];
+            c.WijzigBijdrage(lidId, datum, bedrag, projectId);
+            grvBijdragenLid.EditIndex = -1;
             ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
         }
 

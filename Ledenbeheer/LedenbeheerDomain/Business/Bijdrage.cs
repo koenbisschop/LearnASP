@@ -8,7 +8,7 @@ namespace LedenbeheerDomain.Business
 {
     public class Bijdrage
     {
-        public DateTime Datum { get; private set; }
+        public DateTime Datum { get; internal set; }
         public decimal Bedrag { get; internal set; }
         public int ProjectId { get; internal set; }
         public Bijdrage(DateTime datum, decimal bedrag, int projectId)

@@ -28,9 +28,12 @@ namespace LedenbeheerDomain.Business
         public Bijdrage NieuweBijdrage(DateTime datum, decimal bedrag, int projectId)
         {
             Bijdrage bijdrage = null;
-            bijdrage = Bijdragen.Find(b => b.Datum == datum);
+            bijdrage = Bijdragen.Find(b => b.ProjectId == projectId);
             if (bijdrage != null)
+            {
                 bijdrage.Bedrag += bedrag;
+                bijdrage.Datum = datum;
+            }
             else
             {
                 bijdrage = new Bijdrage(datum, bedrag, projectId);
@@ -39,19 +42,19 @@ namespace LedenbeheerDomain.Business
             return bijdrage;
         }
 
-        public Boolean ReedsBijdrageOp(DateTime datum)
+        public Boolean ReedsBijdrageVoor(int projectId)
         {
-            return Bijdragen.Find(b => b.Datum == datum) != null;
+            return Bijdragen.Find(b => b.ProjectId == projectId) != null;
         }
 
-        public Bijdrage WijzigBijdrage(DateTime datum, decimal bedrag, int projectId)
+        public Bijdrage VerhoogBijdrage(DateTime datum, decimal bedrag, int projectId)
         {
             Bijdrage bijdrage = null;
-            bijdrage = Bijdragen.Find(b => b.Datum == datum);
+            bijdrage = Bijdragen.Find(b => b.ProjectId == projectId);
             if (bijdrage != null)
             {
                 bijdrage.Bedrag += bedrag;
-                bijdrage.ProjectId = projectId;
+                bijdrage.Datum = datum;
             }
             return bijdrage;
         }

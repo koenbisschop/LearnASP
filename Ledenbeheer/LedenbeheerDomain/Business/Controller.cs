@@ -81,14 +81,17 @@ namespace LedenbeheerDomain.Business
             Lid lid = LidRepository.Items.Find(l => l.Naam == naam);
             if (lid == null)
             {
-                Int32 id = LidRepository.GetNextId();
-                lid = new Lid(id, naam);
-                LidRepository.AddItem(lid);
+                AddLid(naam);
             }
+            NieuweBijdrage(lid.Id, DateTime.Today, bedrag, projectId);
+        }
+        public void NieuweBijdrage(Int32 lidId, DateTime datum, decimal bedrag, int projectId)
+        {
+            Lid lid = LidRepository.GetItem(lidId);
             Bijdrage bijdrage;
-            if (lid.ReedsBijdrageOp(DateTime.Today))
+            if (lid.ReedsBijdrageVoor(projectId))
             {
-                bijdrage = lid.WijzigBijdrage(DateTime.Today, bedrag, projectId);
+                bijdrage = lid.VerhoogBijdrage(DateTime.Today, bedrag, projectId);
                 Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
             }
             else
@@ -97,19 +100,16 @@ namespace LedenbeheerDomain.Business
                 Persistence.Controller.AddBijdrage(lid.Id, bijdrage);
             }
         }
-        public void NieuweBijdrage(Int32 lidId, DateTime datum, decimal bedrag, int projectId)
-        {
-            Lid lid = LidRepository.GetItem(lidId);
-            Bijdrage bijdrage = lid.NieuweBijdrage(datum, bedrag, projectId);
-            Persistence.Controller.AddBijdrage(lid.Id, bijdrage);
-        }
         public void WijzigBijdrage(Int32 lidId, DateTime datum, decimal bedrag, int projectId )
         {
             Lid lid = LidRepository.GetItem(lidId);
             Bijdrage bijdrage = lid.Bijdragen.Find(b => b.Datum == datum);
-            bijdrage.Bedrag = bedrag;
-            bijdrage.ProjectId = projectId;
-            Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
+            if (bijdrage != null)
+            {
+                bijdrage.Bedrag = bedrag;
+                bijdrage.ProjectId = projectId;
+                Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
+            }
         }
         #endregion bijdragen
     }

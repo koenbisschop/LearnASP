@@ -7,17 +7,28 @@
         <asp:DropDownList ID="ddlLeden" runat="server" OnSelectedIndexChanged="ddlLeden_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
         <br />
         <br />
-        <asp:GridView ID="grvBijdragenLid" CssClass="col-sm-12" Style="width: 90%;" runat="server" EnableViewState="False" AutoGenerateColumns="False">
+        <asp:GridView ID="grvBijdragenLid" DataKeyNames="Datum" CssClass="col-sm-12" Style="width: 90%; top: 0px; left: 0px;" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="grvBijdragenLid_RowCancelingEdit" OnRowEditing="grvBijdragenLid_RowEditing" OnRowUpdating="grvBijdragenLid_RowUpdating">
             <Columns>
                 <asp:BoundField DataField="Datum" HeaderText="Datum" DataFormatString="{0:ddd d-M-yy}">
                     <ItemStyle Width="30%" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Bedrag" DataFormatString="{0:c2}" HeaderText="Bedrag">
-                    <ItemStyle Width="30%" HorizontalAlign="Right" />
+                    <ItemStyle Width="15%" HorizontalAlign="Right" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Project.Omschrijving" HeaderText="Project">
-                <ItemStyle Width="40%" />
-                </asp:BoundField>
+                <asp:TemplateField HeaderText="Project">
+                    <EditItemTemplate>
+                        <asp:DropDownList ID="ddlProjecten" runat="server" DataSourceID="odsProjecten" DataTextField="Omschrijving" DataValueField="Id" Height="24px" SelectedValue='<%# Bind("Project.Id") %>' Width="221px">
+                        </asp:DropDownList>
+                        <asp:ObjectDataSource ID="odsProjecten" runat="server" SelectMethod="GetProjecten" TypeName="LedenbeheerDomain.Business.Controller"></asp:ObjectDataSource>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Project.Omschrijving") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Width="40%" />
+                </asp:TemplateField>
+                <asp:CommandField ButtonType="Button" ShowEditButton="True">
+                <ItemStyle Width="20%" />
+                </asp:CommandField>
             </Columns>
         </asp:GridView>
         <br />
