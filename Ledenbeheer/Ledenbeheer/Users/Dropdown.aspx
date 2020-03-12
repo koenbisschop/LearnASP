@@ -7,7 +7,7 @@
         <asp:DropDownList ID="ddlLeden" runat="server" OnSelectedIndexChanged="ddlLeden_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
         <br />
         <br />
-        <asp:GridView ID="grvBijdragenLid" DataKeyNames="Datum" CssClass="col-sm-12" Style="width: 90%; top: 0px; left: 0px;" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="grvBijdragenLid_RowCancelingEdit" OnRowEditing="grvBijdragenLid_RowEditing" OnRowUpdating="grvBijdragenLid_RowUpdating">
+        <asp:GridView ID="grvBijdragenLid" DataKeyNames="Datum" CssClass="col-sm-12" Style="width: 90%; top: 0px; left: 0px;" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="grvBijdragenLid_RowCancelingEdit" OnRowEditing="grvBijdragenLid_RowEditing" OnRowUpdating="grvBijdragenLid_RowUpdating" OnRowDeleting="grvBijdragenLid_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="Datum" HeaderText="Datum" DataFormatString="{0:ddd d-M-yy}">
                     <ItemStyle Width="30%" />
@@ -29,6 +29,7 @@
                 <asp:CommandField ButtonType="Button" ShowEditButton="True">
                 <ItemStyle Width="20%" />
                 </asp:CommandField>
+                <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
             </Columns>
         </asp:GridView>
         <br />

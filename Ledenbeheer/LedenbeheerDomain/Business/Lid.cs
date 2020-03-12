@@ -42,6 +42,16 @@ namespace LedenbeheerDomain.Business
             return bijdrage;
         }
 
+        public Boolean VerwijderBijdrage(DateTime datum)
+        {
+            Bijdrage bijdrage = null;
+            bijdrage = Bijdragen.Find(b => b.Datum == datum);
+            if (bijdrage != null)
+                return Bijdragen.Remove(bijdrage);
+            else
+                return false;
+        }
+
         public Boolean ReedsBijdrageVoor(int projectId)
         {
             return Bijdragen.Find(b => b.ProjectId == projectId) != null;

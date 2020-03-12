@@ -88,5 +88,15 @@ namespace Ledenbeheer
             ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
         }
 
+        protected void grvBijdragenLid_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Int32 rowIndex = e.RowIndex;
+            Int32 dataItemIndex = grvBijdragenLid.Rows[rowIndex].DataItemIndex;
+            DateTime datum = (DateTime)grvBijdragenLid.DataKeys[dataItemIndex][0];
+            Int32 lidId = Convert.ToInt32(ddlLeden.SelectedValue);
+            c.VerwijderBijdrage(lidId, datum);
+            ToonInfo(lidId);
+        }
+
     }
 }

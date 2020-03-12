@@ -67,6 +67,12 @@ namespace LedenbeheerDomain.Persistence
             BijdragenMapper mapper = new BijdragenMapper(ConnectionString);
             mapper.UpdateBijdrageInDB(lidId, bijdrage);
         }
+        internal static void DeleteBijdrage(Int32 lidId, DateTime datum)
+        {
+            BijdragenMapper mapper = new BijdragenMapper(ConnectionString);
+            mapper.DeleteBijdrageInDB(lidId, datum);
+        }
+
         #endregion Bijdragen
         #region Projecten
         internal static List<Project> GetProjecten()

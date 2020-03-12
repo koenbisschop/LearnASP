@@ -111,6 +111,13 @@ namespace LedenbeheerDomain.Business
                 Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
             }
         }
+        public void VerwijderBijdrage(Int32 lidId, DateTime datum)
+        {
+            Lid lid = LidRepository.GetItem(lidId);
+            if (lid.VerwijderBijdrage(datum))
+                Persistence.Controller.DeleteBijdrage(lid.Id, datum);
+        }
+
         #endregion bijdragen
     }
 }

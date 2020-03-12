@@ -71,5 +71,19 @@ namespace LedenbeheerDomain.Persistence
             con.Close();
         }
 
+        internal void DeleteBijdrageInDB(Int32 lidId, DateTime datum)
+        {
+            MySqlConnection con = new MySqlConnection(_conString);
+            MySqlCommand cmd = new MySqlCommand(
+            "DELETE FROM tblbijdragen " +
+            " WHERE lidid=@lidid AND datum=@datum"
+            , con);
+            cmd.Parameters.AddWithValue("lidid", lidId);
+            cmd.Parameters.AddWithValue("datum", datum);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
     }
 }
