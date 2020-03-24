@@ -22,7 +22,7 @@ namespace LedenbeheerDomain.Business
             }
         }
 
-        internal static Project GetItem(int id) => Items.Find(i => i != null && i.Id == id);
+        internal static Project GetItem(int id) => Items.Find(i => i.Id == id);
         internal static void RemoveItem(int id)
         {
             Project Project = GetItem(id);

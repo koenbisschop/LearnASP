@@ -65,7 +65,7 @@ namespace LedenbeheerDomain.Persistence
         {
             MySqlConnection con = new MySqlConnection(_conString);
             MySqlCommand cmd = new MySqlCommand(
-                "UPDATE tblbijdragen SET bedrag = @bedrag, projectid=@projectid, datum=@datum " +
+                "UPDATE tblbijdragen SET bedrag = @bedrag, projectid=@projectid, datum=@nieuweDatum " +
                 " WHERE lidid=@lidid AND datum=@datum"
                 , con);
             cmd.Parameters.AddWithValue("lidid", lidId);

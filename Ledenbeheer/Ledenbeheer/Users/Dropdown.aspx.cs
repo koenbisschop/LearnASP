@@ -16,6 +16,7 @@ namespace Ledenbeheer
             c = (Controller)Session["controller"];
             if (!IsPostBack)
             {
+                //Page.Error += new System.EventHandler(Page_Error);
                 ddlLeden.DataSource = c.GetLeden();
                 ddlLeden.DataTextField = "Naam";
                 ddlLeden.DataValueField = "Id";
@@ -52,7 +53,12 @@ namespace Ledenbeheer
             }
         }
 
-
+        private void Page_Error(object sender, EventArgs e)
+        {
+            // Handle specific exception.
+            // Pass the error on to the error page.
+            Server.Transfer("~/ErrorPage.aspx?handler=Page_Error%20-%20DropDown.aspx", true);
+        }
 
         protected void btnTerug_Click(object sender, EventArgs e)
         {
@@ -83,12 +89,12 @@ namespace Ledenbeheer
             DropDownList ddlProjecten = (DropDownList)row.FindControl("ddlProjecten");
             int projectId = Convert.ToInt32(ddlProjecten.SelectedValue);
             decimal bedrag = Convert.ToDecimal(((TextBox)row.Cells[1].Controls[0]).Text);
+            //ofwel:
+            //decimal bedrag = Convert.ToDecimal(e.NewValues["Bedrag"]);
             TextBox txtNieuweDatum = (TextBox)row.FindControl("txtDatum");
             DateTime datum = (DateTime)grvBijdragenLid.DataKeys[e.RowIndex][0];
             DateTime nieuweDatum = datum;
             DateTime.TryParse(txtNieuweDatum.Text, out nieuweDatum);
-            //ofwel:
-            //decimal bedrag = Convert.ToDecimal(e.NewValues["Bedrag"]);
             c.WijzigBijdrage(lidId, datum, nieuweDatum, bedrag, projectId);
             grvBijdragenLid.EditIndex = -1;
             ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));

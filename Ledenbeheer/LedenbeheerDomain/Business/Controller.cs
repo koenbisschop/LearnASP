@@ -107,6 +107,7 @@ namespace LedenbeheerDomain.Business
             if (bijdrage != null)
             {
                 bijdrage.Bedrag = bedrag;
+                if (nieuweDatum > DateTime.Today) throw new Exception("Voer de bijdrage pas in nadat deze gebeurd is!");
                 bijdrage.Datum = nieuweDatum;
                 bijdrage.ProjectId = projectId;
                 Persistence.Controller.UpdateBijdrage(lid.Id, oudeDatum, bijdrage);

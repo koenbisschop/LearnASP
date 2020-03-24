@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LedenMaster.Master" AutoEventWireup="true" CodeBehind="Dropdown.aspx.cs" Inherits="Ledenbeheer.Dropdown" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LedenMaster.Master" AutoEventWireup="true" CodeBehind="Dropdown.aspx.cs" Inherits="Ledenbeheer.Dropdown" Debug="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -11,10 +11,10 @@
             <Columns>
                 <asp:TemplateField HeaderText="Datum">
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtDatum" runat="server" Text='<%# Bind("Datum","0:dd-MM-yyyy") %>' TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtDatum" runat="server" Text='<%# Bind("Datum","0:MM-dd-yyyy") %>' TextMode="Date"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Datum", "{0:dd-MM-yyyy}") %>'></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Datum", "{0:MM-dd-yyyy}") %>'></asp:Label>
                     </ItemTemplate>
                     <ItemStyle Width="30%" />
                 </asp:TemplateField>
