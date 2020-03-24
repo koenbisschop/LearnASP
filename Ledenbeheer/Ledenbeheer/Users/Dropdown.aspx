@@ -17,7 +17,8 @@
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Project">
                     <EditItemTemplate>
-                        <asp:DropDownList ID="ddlProjecten" runat="server" DataSourceID="odsProjecten" DataTextField="Omschrijving" DataValueField="Id" Height="24px" SelectedValue='<%# Bind("Project.Id") %>' Width="221px">
+                        <asp:DropDownList ID="ddlProjecten" runat="server" Height="24px" Width="221px" AppendDataBoundItems="True" DataSourceID="odsProjecten" DataTextField="Omschrijving" DataValueField="Id" ItemType="LedenBeheerDomain.Project">
+                            <asp:ListItem Text="-- undefined --" Value="0"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:ObjectDataSource ID="odsProjecten" runat="server" SelectMethod="GetProjecten" TypeName="LedenbeheerDomain.Business.Controller"></asp:ObjectDataSource>
                     </EditItemTemplate>
@@ -27,7 +28,7 @@
                     <ItemStyle Width="40%" />
                 </asp:TemplateField>
                 <asp:CommandField ButtonType="Button" ShowEditButton="True">
-                <ItemStyle Width="20%" />
+                    <ItemStyle Width="20%" />
                 </asp:CommandField>
                 <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
             </Columns>

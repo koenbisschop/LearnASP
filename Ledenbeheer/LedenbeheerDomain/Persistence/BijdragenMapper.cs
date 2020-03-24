@@ -71,7 +71,10 @@ namespace LedenbeheerDomain.Persistence
             cmd.Parameters.AddWithValue("lidid", lidId);
             cmd.Parameters.AddWithValue("datum", bijdrage.Datum);
             cmd.Parameters.AddWithValue("bedrag", bijdrage.Bedrag);
-            cmd.Parameters.AddWithValue("projectid", bijdrage.ProjectId);
+            if (bijdrage.ProjectId != 0)
+                cmd.Parameters.AddWithValue("projectid", bijdrage.ProjectId);
+            else
+                cmd.Parameters.AddWithValue("projectid", DBNull.Value);
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();

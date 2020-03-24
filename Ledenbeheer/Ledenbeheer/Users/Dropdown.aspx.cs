@@ -25,7 +25,7 @@ namespace Ledenbeheer
             if (Session["lidnr"] != null)
             {
                 //haal het geselecteerde lidnr op in de session-ruimte
-                Int32 lidNr = (Int32) Session["lidnr"];
+                Int32 lidNr = (Int32)Session["lidnr"];
                 //deze sessievariabele verwijderen!
                 Session["lidnr"] = null;
                 //haal het lid-item op in de dropdownlist
@@ -36,7 +36,7 @@ namespace Ledenbeheer
             }
         }
 
-        protected void ToonInfo(Int32 id=0)
+        protected void ToonInfo(Int32 id = 0)
         {
             Lid lid = c.GetLid(id); //of beter: id!=0 ? c.GetLid(id) : null;
             if (lid != null)
@@ -51,6 +51,9 @@ namespace Ledenbeheer
                 lblInfo.Text = "";
             }
         }
+
+
+
         protected void btnTerug_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Default.aspx");
@@ -77,9 +80,9 @@ namespace Ledenbeheer
         {
             int lidId = Convert.ToInt32(ddlLeden.SelectedValue);
             GridViewRow row = grvBijdragenLid.Rows[e.RowIndex];
-            DropDownList ddlProjecten = (DropDownList) row.FindControl("ddlProjecten");
+            DropDownList ddlProjecten = (DropDownList)row.FindControl("ddlProjecten");
             int projectId = Convert.ToInt32(ddlProjecten.SelectedValue);
-            decimal bedrag = Convert.ToDecimal(((TextBox) row.Cells[1].Controls[0]).Text);
+            decimal bedrag = Convert.ToDecimal(((TextBox)row.Cells[1].Controls[0]).Text);
             //ofwel:
             //decimal bedrag = Convert.ToDecimal(e.NewValues["Bedrag"]);
             DateTime datum = (DateTime)grvBijdragenLid.DataKeys[e.RowIndex][0];
