@@ -28,10 +28,16 @@ namespace LedenbeheerDomain.Persistence
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
+                int pid=0;
+                try
+                {
+                    pid = Convert.ToInt32(dr["projectid"]);
+                }
+                catch  { }
                 Bijdrage _bijdrage = new Bijdrage(
                     Convert.ToDateTime(dr["datum"]),
                     Convert.ToDecimal(dr["bedrag"]),
-                    Convert.ToInt32(dr["projectid"])
+                    pid
                     );
                 _bijdragen.Add(_bijdrage);
             }
