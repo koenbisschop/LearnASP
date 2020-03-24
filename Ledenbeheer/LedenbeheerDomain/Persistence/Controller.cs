@@ -62,10 +62,10 @@ namespace LedenbeheerDomain.Persistence
             mapper.AddBijdrageToDB(lidId, bijdrage);
         }
 
-        internal static void UpdateBijdrage(Int32 lidId, Bijdrage bijdrage)
+        internal static void UpdateBijdrage(Int32 lidId, DateTime oudeDatum, Bijdrage bijdrage)
         {
             BijdragenMapper mapper = new BijdragenMapper(ConnectionString);
-            mapper.UpdateBijdrageInDB(lidId, bijdrage);
+            mapper.UpdateBijdrageInDB(lidId, oudeDatum, bijdrage);
         }
         internal static void DeleteBijdrage(Int32 lidId, DateTime datum)
         {

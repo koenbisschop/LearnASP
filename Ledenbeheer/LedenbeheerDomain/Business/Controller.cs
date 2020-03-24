@@ -92,7 +92,7 @@ namespace LedenbeheerDomain.Business
             if (lid.ReedsBijdrageVoor(projectId))
             {
                 bijdrage = lid.VerhoogBijdrage(DateTime.Today, bedrag, projectId);
-                Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
+                Persistence.Controller.UpdateBijdrage(lid.Id, datum, bijdrage);
             }
             else
             {
@@ -100,15 +100,16 @@ namespace LedenbeheerDomain.Business
                 Persistence.Controller.AddBijdrage(lid.Id, bijdrage);
             }
         }
-        public void WijzigBijdrage(Int32 lidId, DateTime datum, decimal bedrag, int projectId )
+        public void WijzigBijdrage(Int32 lidId, DateTime oudeDatum, DateTime nieuweDatum, decimal bedrag, int projectId )
         {
             Lid lid = LidRepository.GetItem(lidId);
-            Bijdrage bijdrage = lid.Bijdragen.Find(b => b.Datum == datum);
+            Bijdrage bijdrage = lid.Bijdragen.Find(b => b.Datum == oudeDatum);
             if (bijdrage != null)
             {
                 bijdrage.Bedrag = bedrag;
+                bijdrage.Datum = nieuweDatum;
                 bijdrage.ProjectId = projectId;
-                Persistence.Controller.UpdateBijdrage(lid.Id, bijdrage);
+                Persistence.Controller.UpdateBijdrage(lid.Id, oudeDatum, bijdrage);
             }
         }
         public void VerwijderBijdrage(Int32 lidId, DateTime datum)

@@ -61,15 +61,16 @@ namespace LedenbeheerDomain.Persistence
             con.Close();
         }
 
-        internal void UpdateBijdrageInDB(Int32 lidId, Bijdrage bijdrage)
+        internal void UpdateBijdrageInDB(Int32 lidId, DateTime oudeDatum, Bijdrage bijdrage)
         {
             MySqlConnection con = new MySqlConnection(_conString);
             MySqlCommand cmd = new MySqlCommand(
-                "UPDATE tblbijdragen SET bedrag = @bedrag, projectid=@projectid " +
+                "UPDATE tblbijdragen SET bedrag = @bedrag, projectid=@projectid, datum=@datum " +
                 " WHERE lidid=@lidid AND datum=@datum"
                 , con);
             cmd.Parameters.AddWithValue("lidid", lidId);
-            cmd.Parameters.AddWithValue("datum", bijdrage.Datum);
+            cmd.Parameters.AddWithValue("datum", oudeDatum);
+            cmd.Parameters.AddWithValue("nieuweDatum", bijdrage.Datum);
             cmd.Parameters.AddWithValue("bedrag", bijdrage.Bedrag);
             if (bijdrage.ProjectId != 0)
                 cmd.Parameters.AddWithValue("projectid", bijdrage.ProjectId);

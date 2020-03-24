@@ -83,10 +83,13 @@ namespace Ledenbeheer
             DropDownList ddlProjecten = (DropDownList)row.FindControl("ddlProjecten");
             int projectId = Convert.ToInt32(ddlProjecten.SelectedValue);
             decimal bedrag = Convert.ToDecimal(((TextBox)row.Cells[1].Controls[0]).Text);
+            TextBox txtNieuweDatum = (TextBox)row.FindControl("txtDatum");
+            DateTime datum = (DateTime)grvBijdragenLid.DataKeys[e.RowIndex][0];
+            DateTime nieuweDatum = datum;
+            DateTime.TryParse(txtNieuweDatum.Text, out nieuweDatum);
             //ofwel:
             //decimal bedrag = Convert.ToDecimal(e.NewValues["Bedrag"]);
-            DateTime datum = (DateTime)grvBijdragenLid.DataKeys[e.RowIndex][0];
-            c.WijzigBijdrage(lidId, datum, bedrag, projectId);
+            c.WijzigBijdrage(lidId, datum, nieuweDatum, bedrag, projectId);
             grvBijdragenLid.EditIndex = -1;
             ToonInfo(Convert.ToInt32(ddlLeden.SelectedValue));
         }
@@ -101,5 +104,16 @@ namespace Ledenbeheer
             ToonInfo(lidId);
         }
 
+        protected void grvBijdragenLid_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowState == DataControlRowState.Edit)
+            {
+                TextBox txtDatum = e.Row.FindControl("txtDatum") as TextBox;
+                if (txtDatum != null)
+                {
+                    txtDatum.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                }
+            }
+        }
     }
 }
