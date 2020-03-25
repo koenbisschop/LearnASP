@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LedenMaster.Master" AutoEventWireup="true" CodeBehind="Dropdown.aspx.cs" Inherits="Ledenbeheer.Dropdown" Debug="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LedenMaster.Master" AutoEventWireup="true" CodeBehind="Dropdown.aspx.cs" Inherits="Ledenbeheer.Dropdown" Debug="False" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

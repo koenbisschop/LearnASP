@@ -11,67 +11,44 @@ namespace Ledenbeheer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Create safe error messages.
-            string generalErrorMsg = "A problem has occurred on this web site. Please try again. " +
-                "If this error continues, please contact support.";
+            // Create error messages.
+            string generalErrorMsg = "A problem has occurred on this web site.";
             string httpErrorMsg = "An HTTP error occurred. Page Not found. Please try again.";
             string unhandledErrorMsg = "The error was unhandled by application code.";
 
-            // Display safe error message.
+            // Heading of the error page
             FriendlyErrorMsg.Text = generalErrorMsg;
 
-            // Determine where error was handled.
+            // Show which page fired the error
             string errorHandler = Request.QueryString["handler"];
             if (errorHandler == null)
             {
                 errorHandler = "Error Page";
             }
+            ErrorHandler.Text = errorHandler;
 
+            // Determine what went wrong
             // Get the last error from the server.
             Exception ex = Server.GetLastError();
-
             // Get the error number passed as a querystring value.
             string errorMsg = Request.QueryString["msg"];
             if (errorMsg == "404")
             {
                 ex = new HttpException(404, httpErrorMsg, ex);
-                FriendlyErrorMsg.Text = ex.Message;
             }
-
-            // If the exception no longer exists, create a generic exception.
+            // If no exception was thrown, create a generic exception.
             if (ex == null)
-            {
                 ex = new Exception(unhandledErrorMsg);
-            }
 
-            // Detailed Error Message.
+            // Show Detailed Error Info.
             ErrorDetailedMsg.Text = ex.Message;
-
-            // Show where the error was handled.
-            ErrorHandler.Text = errorHandler;
-
-            // Show local access details.
-            DetailedErrorPanel.Visible = true;
-
-            if (ex.InnerException != null)
+            InnerMessage.Text = ex.GetType().ToString();
+            if (ex.StackTrace != null)
             {
-                InnerMessage.Text = ex.GetType().ToString() + "<br/>" +
-                    ex.InnerException.Message;
-                InnerTrace.Text = ex.InnerException.StackTrace;
-            }
-            else
-            {
-                InnerMessage.Text = ex.GetType().ToString();
-                if (ex.StackTrace != null)
-                {
-                    InnerTrace.Text = ex.StackTrace.ToString().TrimStart();
-                }
+                InnerTrace.Text = ex.StackTrace.ToString().TrimStart();
             }
             // Clear the error from the server.
             Server.ClearError();
-
         }
-
     }
-
 }
