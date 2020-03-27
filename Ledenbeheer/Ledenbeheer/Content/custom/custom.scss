@@ -1,0 +1,17 @@
+﻿// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Your variable overrides
+$body-bg: #b6ff00;
+$body-color: #ff0000;
+
+//theme-colors
+$theme-colors: ( 
+    "primary": #0074d9, 
+    "danger": #ff4136 
+);
+
+$border-radius: 10rem;
+
+// import defaults
+@import "Content/bootstrap/bootstrap.scss";

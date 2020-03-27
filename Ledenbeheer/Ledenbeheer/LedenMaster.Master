@@ -5,7 +5,7 @@
 <html>
 <head runat="server">
     <title>Beheer ledenbijdragen</title>
-    <link rel="stylesheet" href="Content/bootstrap.css" />
+    <link rel="stylesheet" href="Content/custom/custom.css" />
     <link href="css/stijlen.css" type="text/css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="yourname" />
