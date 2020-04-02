@@ -81,7 +81,7 @@ namespace LedenbeheerDomain.Business
             Lid lid = LidRepository.Items.Find(l => l.Naam == naam);
             if (lid == null)
             {
-                AddLid(naam);
+                lid = AddLid(naam);
             }
             NieuweBijdrage(lid.Id, DateTime.Today, bedrag, projectId);
         }

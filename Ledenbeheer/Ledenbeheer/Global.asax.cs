@@ -18,7 +18,7 @@ namespace Ledenbeheer
                 "jquery",
                 new ScriptResourceDefinition
                 {
-                    Path = "~/Scripts/jquery-3.0.0.slim.js"
+                    Path = "~/Scripts/jquery-3.4.1.slim.js"
                 }
                 );
             ScriptManager.ScriptResourceMapping.AddDefinition(
